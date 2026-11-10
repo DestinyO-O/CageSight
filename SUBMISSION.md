@@ -10,9 +10,9 @@
 | 工具分类 | **推理环境安全**（首选，栏目内仅 5 个，竞争最小）<br>备选：Agent智能体安全 / AI供应链安全 |
 | 工具话题 | 安全工具、AI 人工智能、智能体安全、威胁检测 |
 | 开发语言 | Python |
-| GitHub 仓库 | `https://github.com/<你的账号>/cagesight` |
+| GitHub 仓库 | `https://github.com/DestinyO-O/cagesight` |
 | 最新版本 | v0.1.0 |
-| 开发者 | `<你的 ID / 团队>` |
+| 开发者 | `DestinyO-O` |
 | 开源协议 | MIT |
 
 ## 二、摘要（卡片用，约 110 字）
