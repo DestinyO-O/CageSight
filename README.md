@@ -1,5 +1,5 @@
 # CageSight
-
+[![ci](https://github.com/DestinyO-O/cagesight/actions/workflows/ci.yml/badge.svg)](https://github.com/DestinyO-O/cagesight/actions/workflows/ci.yml)
 > 看见 Agent 从沙箱里偷偷带出去的东西。
 
 CageSight 是一个**零依赖**的 AI Agent 沙箱外传 / 逃逸检测工具。它不负责隔离，负责在隔离失效之前把证据留下来。
@@ -33,7 +33,7 @@ Agent 沙箱解决的是「不让它跑出去」，但很少回答三个问题�
 ## 快速开始
 
 ```bash
-git clone https://github.com/<you>/cagesight.git
+git clone https://github.com/DestinyO-O/cagesight.git
 cd cagesight
 pip install -e .
 
