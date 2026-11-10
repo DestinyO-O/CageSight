@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cagesight"
+version = "0.1.0"
+description = "CageSight - detect data exfiltration and sandbox escape attempts from AI agent sandboxes"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "CageSight Contributors" }]
+keywords = ["ai-security", "agent", "sandbox", "exfiltration", "dns-tunnel", "detection"]
+dependencies = []
+
+[project.scripts]
+cagesight = "cagesight.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["cagesight*"]
+
+[tool.setuptools.package-data]
+cagesight = ["rules/*.json"]

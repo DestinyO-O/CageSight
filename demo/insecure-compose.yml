@@ -1,0 +1,21 @@
+# 故意写坏的 Agent 沙箱配置：用于演示 cagesight audit-config
+services:
+  agent:
+    image: python:3.12
+    container_name: insecure-agent
+    privileged: true
+    network_mode: host
+    pid: host
+    user: root
+    read_only: false
+    cap_add:
+      - SYS_ADMIN
+      - SYS_PTRACE
+    security_opt:
+      - seccomp=unconfined
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /:/host
+      - ./workspace:/workspace
+    environment:
+      - OPENAI_API_KEY=sk-demo-not-a-real-key

